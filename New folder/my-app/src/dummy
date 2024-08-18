@@ -1,0 +1,181 @@
+//App.js
+
+import React, { useState } from "react";
+import SmallComponent from "./SmallComponent";
+import { createMuiTheme, ThemeProvider }
+	from "@material-ui/core/styles";
+
+function App() {
+	const [toggleDark, settoggleDark] = useState(false);
+	const myTheme = createMuiTheme({
+		// Theme settings
+		palette: {
+			type: toggleDark ? "dark" : "light",
+		},
+	});
+
+	return (
+
+		// Wrapping code in ThemeProvider
+		<ThemeProvider theme={myTheme}>
+			<SmallComponent toggleDark={toggleDark}
+				settoggleDark={settoggleDark} />
+		</ThemeProvider>
+	);
+}
+export default App;
+
+
+
+//100 work
+
+// App.js
+import React from 'react';
+import { ThemeProvider, useTheme } from './ThemeContext';
+
+function ThemeToggleButton() {
+  const { isDarkMode, toggleTheme } = useTheme();
+  return (
+    <button onClick={toggleTheme}>
+      Switch to {isDarkMode ? 'Light' : 'Dark'} Mode
+    </button>
+  );
+}
+
+function AppContent() {
+  const { isDarkMode } = useTheme();
+  return (
+    <div style={{ background: isDarkMode ? '#333' : '#FFF', color: isDarkMode ? '#FFF' : '#000', minHeight: '100vh' }}>
+      <h1>{isDarkMode ? 'Dark Mode' : 'Light Mode'}</h1>
+      <ThemeToggleButton />
+    </div>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProvider>
+      <AppContent />
+    </ThemeProvider>
+  );
+}
+
+export default App;
+//theme
+import React, { createContext, useState, useContext } from 'react';
+
+const ThemeContext = createContext();
+
+export function ThemeProvider({ children }) {
+  const [isDarkMode, setIsDarkMode] = useState(false);
+
+  const toggleTheme = () => setIsDarkMode(!isDarkMode);
+
+  return (
+    <ThemeContext.Provider value={{ isDarkMode, toggleTheme }}>
+      {children}
+    </ThemeContext.Provider>
+  );
+}
+
+export function useTheme() {
+  return useContext(ThemeContext);
+}
+
+//toggle button
+
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: #2196F3;
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(26px);
+  -ms-transform: translateX(26px);
+  transform: translateX(26px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+</style>
+</head>
+<body>
+
+<h2>Toggle Switch</h2>
+
+
+<label class="switch">
+  <input type="checkbox">
+  <span class="slider round"></span>
+</label>
+
+
+</body>
+</html> 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

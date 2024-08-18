@@ -1,0 +1,51 @@
+
+.img{
+
+  justify-content: center;
+  display: flex;
+  margin: auto;
+  margin-left: 50px;
+  margin-right: 50px;
+  padding: 20px;
+  align-items: center;
+  gap: 20px;
+}
+
+#darkmode{
+  border-radius: 80px;
+  padding: 2px;
+  margin-left: 80%;
+ 
+}
+#darkmode:hover{
+  background-color: red;
+  cursor: pointer;
+}
+
+/* src/App.css */
+:root {
+  --background-color: white;
+  --text-color: black;
+}
+
+[data-theme='dark'] {
+  --background-color: black;
+  --text-color: white;
+}
+
+body {
+  background-color: var(--background-color);
+  color: var(--text-color);
+  transition: background-color 0.3s, color 0.3s;
+}
+
+
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
